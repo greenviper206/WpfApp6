@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:WpfApp6"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -20,16 +21,33 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="Azure" Height="80" Grid.ColumnSpan="3">
             <Label Content="Header" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,20,0,20"/>
             <TextBox x:Name="UrlTextBox" VerticalAlignment="Center" Margin="20,10,50,10" Width="441" Height="30"/>
-            <Button x:Name="GetAqiButton" VerticalAlignment="Center" Width="100" Height="30" Content="取得AQI資料"/>
+            <Button x:Name="GetAqiButton" VerticalAlignment="Center" Width="100" Height="30" Content="取得AQI資料" Click="GetAqiButton_Click"/>
         </StackPanel>
-        <TextBox x:Name="ResultTextBox" Grid.Row="1" Grid.Column="0" Background="Bisque" Grid.ColumnSpan="3" FontSize="14" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="10"/>
-        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" Background="LightGray" Cursor="SizeWE" HorizontalAlignment="Stretch" Height="Auto"/>
+        <Border Grid.Row="1" Margin="2" BorderBrush="Brown" BorderThickness="1">
+            <TextBox x:Name="ContentTextBox" Grid.Column="0" Background="Beige" FontSize="14" Margin="3" Padding="5,5,5,5"/>
+        </Border>
+        <GridSplitter Grid.Row="1" Grid.Column="1" Background="LightGray" Cursor="SizeWE" Width="5" Height="Auto" HorizontalAlignment="Stretch"/>
         <Grid Grid.Row="1" Grid.Column="2" Background="#FFF5E9E5">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="80" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Margin="2" BorderBrush="Red" BorderThickness="1">
+                <DataGrid x:Name="RecordDataGrid" AutoGenerateColumns="True" />
+            </Border>
+            <GridSplitter Grid.Row="1" Height="5" Background="LightGray" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Grid.Row="2" Margin="2" BorderBrush="Blue" BorderThickness="1">
+                <WrapPanel x:Name="FieldWrapPanel" Margin="2" />
+            </Border>
+            <Border Grid.Row="3" Margin="2" BorderBrush="Green" BorderThickness="1">
+                <lvc:CartesianChart x:Name="AqiChart" />
+            </Border>
         </Grid>
-        <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Background="LightSlateGray">
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Background="LightGray">
             <StatusBarItem>
-                <TextBlock x:Name="StatusBarText" Text="Status: Ready" Margin="50,0,0,0"/>
+                <TextBlock x:Name="StatusBarText" Text="Ready" Margin="50,0,0,0"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>
