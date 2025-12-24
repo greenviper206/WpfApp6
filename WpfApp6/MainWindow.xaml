@@ -19,7 +19,7 @@
             <ColumnDefinition Width="600*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="Azure" Height="80" Grid.ColumnSpan="3">
-            <Label Content="Header" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,20,0,20"/>
+            <Label Content="空氣品質監測資料網址" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,20,0,20"/>
             <TextBox x:Name="UrlTextBox" VerticalAlignment="Center" Margin="20,10,50,10" Width="441" Height="30"/>
             <Button x:Name="GetAqiButton" VerticalAlignment="Center" Width="100" Height="30" Content="取得AQI資料" Click="GetAqiButton_Click"/>
         </StackPanel>
@@ -35,15 +35,18 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Margin="2" BorderBrush="Red" BorderThickness="1">
-                <DataGrid x:Name="RecordDataGrid" AutoGenerateColumns="True" />
+                <DataGrid x:Name="RecordDataGrid" AutoGenerateColumns="True" LoadingRow="RecordDataGrid_LoadingRow" SelectionChanged="RecordDataGrid_SelectionChanged" />
             </Border>
             <GridSplitter Grid.Row="1" Height="5" Background="LightGray" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <Border Grid.Row="2" Margin="2" BorderBrush="Blue" BorderThickness="1">
                 <WrapPanel x:Name="FieldWrapPanel" Margin="2" />
             </Border>
-            <Border Grid.Row="3" Margin="2" BorderBrush="Green" BorderThickness="1">
-                <lvc:CartesianChart x:Name="AqiChart" />
-            </Border>
+
+            <lvc:CartesianChart Grid.Row="3" x:Name="AqiChart" MinWidth="500" Height="400">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="數值"/>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
         </Grid>
         <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Background="LightGray">
             <StatusBarItem>
