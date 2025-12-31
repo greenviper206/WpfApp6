@@ -1,4 +1,4 @@
-﻿using _2025_WpfApp6;
+﻿using WpfApp6;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Collections.Generic;

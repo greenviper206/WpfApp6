@@ -1,6 +1,5 @@
 ﻿namespace WpfApp6
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Extras
     {
         public string api_key { get; set; }
